@@ -59,7 +59,7 @@ def node_name = "${NODE_NAME}"
 for (item in data.bases)
 {
     if (!item.used) {continue}
-    if (item.hostName == node_name) {echo item.name}
+    if (item.hostName == node_name) {echo 'Host find: ${item.name}'}
     }
 
       }
