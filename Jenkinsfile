@@ -62,7 +62,7 @@ pipeline {
         assert props['key'] == null
         props.each { key, value ->
         echo "Walked through key $key and value $value"
-}
+                  }
         
       }
       }
