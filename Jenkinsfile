@@ -49,13 +49,19 @@ pipeline {
         script {
         
      
-  def props = readJSON file: 'app.properties'
-  props.bases.each { key, value ->
-        echo "Walked through key $key and value $value"
-                  }
+  def data = readJSON file: 'app.properties'
+ // props.bases.each { key, value ->
+    //    echo "Walked through key $key and value $value"
+        //          }
 
 def node_name = "${NODE_NAME}"
     echo "The Node Name is: ${node_name}"
+for (item in data.bases)
+{
+    if (!item.used) {continue}
+    print item.name
+    print item.used
+    println item.version}
 
       }
       }
