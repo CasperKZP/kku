@@ -53,9 +53,8 @@ pipeline {
         //props.each { key, value ->
         //echo "Walked through key $key and value $value"
          //         }
-        def jsonSlurper = new JsonSlurper()
-data = jsonSlurper.parse(new File('app.properties'))
-println(data)
+  def props = readJSON file: 'app.properties'
+  echo props
       }
       }
     }
