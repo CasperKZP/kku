@@ -48,15 +48,15 @@ pipeline {
       steps {
         script {
         
-       // def props = readJSON file: 'app.properties', returnPojo: true
-        //assert props['key'] == null
-        //props.each { key, value ->
-        //echo "Walked through key $key and value $value"
-         //         }
+     
   def props = readJSON file: 'app.properties'
   props.bases.each { key, value ->
         echo "Walked through key $key and value $value"
                   }
+
+def node_name = "${NODE_NAME}"
+    echo "The Node Name is: ${node_name}"
+
       }
       }
     }
