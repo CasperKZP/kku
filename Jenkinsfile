@@ -59,9 +59,8 @@ def node_name = "${NODE_NAME}"
 for (item in data.bases)
 {
     if (!item.used) {continue}
-    print item.name
-    print item.used
-    println item.version}
+    if (item.hostName == node_name) {echo item.name}
+    }
 
       }
       }
