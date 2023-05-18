@@ -54,7 +54,7 @@ pipeline {
         //echo "Walked through key $key and value $value"
          //         }
   def props = readJSON file: 'app.properties'
-  props.each { key, value ->
+  props.bases.each { key, value ->
         echo "Walked through key $key and value $value"
                   }
       }
