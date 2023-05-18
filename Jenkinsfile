@@ -2,6 +2,7 @@
 //import io.libs.SqlUtils
 //import io.libs.ProjectHelpers
 import io.libs.Utils
+import groovy.json.JsonSlurper
 
 //def sqlUtils = new SqlUtils()
 def utils = new Utils()
@@ -47,12 +48,14 @@ pipeline {
       steps {
         script {
         
-        def props = readJSON file: 'app.properties', returnPojo: true
-        assert props['key'] == null
-        props.each { key, value ->
-        echo "Walked through key $key and value $value"
-                  }
-        
+       // def props = readJSON file: 'app.properties', returnPojo: true
+        //assert props['key'] == null
+        //props.each { key, value ->
+        //echo "Walked through key $key and value $value"
+         //         }
+        def jsonSlurper = new JsonSlurper()
+data = jsonSlurper.parse(new File('app.properties'))
+println(data)
       }
       }
     }
