@@ -64,6 +64,7 @@ pipeline {
     }
     //Шаг 2. Выполнение
     stage('Выполнение') {
+      agent {label 'expo-0068'}
       steps {
         script {
           echo 'stage Выполнение:'
@@ -79,9 +80,7 @@ def echoParams(hostName) {
     timestamps {
       stage("Этап ${hostName}") {
         agent {
-          node {
             label hostName
-          }
         }
         //steps {
         script {
