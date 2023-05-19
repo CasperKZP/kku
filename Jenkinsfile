@@ -81,7 +81,7 @@ def echoParams(hostName) {
         agent {
           label "${hostName}"
         }
-        steps {
+        //steps {
          script {
          //   if (hostName != "${NODE_NAME}") {
            //   unstable('Host skiped')
@@ -93,7 +93,7 @@ def echoParams(hostName) {
             dir ("${hostName}") {
                             writeFile file:'dummy', text:''
                         }
-          }
+         // }
         }
       }
     }
