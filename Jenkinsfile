@@ -52,25 +52,23 @@ pipeline {
                 AGENT_IBPASS = item.ibPass
 
                 agents["agents${item.hostName}"] = echoParams() //заполняем словарь агентами
+
               }
             }
-
           }
         }
       }
-    }
 
     //Шаг 2. Выполнение
     stage('Выполнение') {
       steps {
-        script {  
-          // echoParams()
-          echo "stage stagename"
+        script {
+          echo 'stage stagename'
         }
       }
     }
+    }
   }
-}
 
 def echoParams(hostName) {
   return {
@@ -81,8 +79,8 @@ def echoParams(hostName) {
     }
   }
 
- // echo AGENT_NAME
- // echo AGENT_PLATFORM
- // echo AGENT_IBLOGIN
- // echo AGENT_IBPASS
+// echo AGENT_NAME
+// echo AGENT_PLATFORM
+// echo AGENT_IBLOGIN
+// echo AGENT_IBPASS
 }
