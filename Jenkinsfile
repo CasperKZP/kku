@@ -16,7 +16,8 @@ pipeline {
         string(defaultValue: "${env.admin1cPwd}", description: 'Пароль администратора базы тестирования 1C. Должен быть одинаковым для всех баз', name: 'admin1cPwd')
   }
 
-   // agent {
+    agent any 
+   // {
     //  label any
     //    label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "expo-0068" : env.jenkinsAgent}"
     //}
