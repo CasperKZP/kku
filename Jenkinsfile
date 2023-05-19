@@ -79,7 +79,7 @@ def echoParams(hostName) {
   return {
     timestamps {
       stage("Этап ${hostName}") {
-        if (hostName <> "${NODE_NAME}") {
+        if (hostName != "${NODE_NAME}") {
           return
          } 
 
