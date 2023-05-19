@@ -43,6 +43,9 @@ pipeline {
             echo "The Node Name is: ${node_name}"
             for (item in data.bases) {
               if (!item.used) { continue }
+
+              agents["agents_${item.hostName}"] = echoParams(item.hostName) //заполняем словарь агентами
+              
               if (item.hostName == node_name) {
                 //Параметры текущего хоста
                 echo "Host find: ${item.hostName}"
@@ -51,7 +54,7 @@ pipeline {
                 AGENT_IBLOGIN = item.ibLogin
                 AGENT_IBPASS = item.ibPass
 
-                agents["agents_${item.hostName}"] = echoParams(item.hostName) //заполняем словарь агентами
+                
               }
             }
 
