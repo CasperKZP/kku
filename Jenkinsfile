@@ -57,7 +57,7 @@ pipeline {
         }
       }
     }
-  }
+  
 
     stage('Init') {
       steps {
@@ -65,6 +65,7 @@ pipeline {
         }
       }
     }
+}
 }
 
 def echoParams() {
