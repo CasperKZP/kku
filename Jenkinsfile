@@ -79,7 +79,7 @@ def echoParams(hostName) {
     timestamps {
       stage("Этап ${hostName}") {
         agent {
-          label "${hostName}"
+          label hostName
         }
         //steps {
          script {
