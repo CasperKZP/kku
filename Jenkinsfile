@@ -79,10 +79,12 @@ def echoParams(hostName) {
     timestamps {
       stage("Этап ${hostName}") {
         agent {
-          label hostName
+          node {
+            label hostName
+          }
         }
         //steps {
-         script {
+        script {
          //   if (hostName != "${NODE_NAME}") {
            //   unstable('Host skiped')
           //    return
@@ -90,10 +92,10 @@ def echoParams(hostName) {
 
             echo "Host name in stage: ${hostName}"
             echo "Node name in stage: ${NODE_NAME}"
-            dir ("${hostName}") {
-                            writeFile file:'dummy', text:''
-                        }
-         // }
+            dir("${hostName}") {
+            writeFile file:'dummy', text:''
+            }
+        // }
         }
       }
     }
