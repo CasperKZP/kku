@@ -79,7 +79,7 @@ pipeline {
 
 def echoParams(hostName) {
   return {
-    node('expo-0068') {
+    node(hostName) {
       timestamps {
         stage("Этап ${hostName}") {
           //steps {
