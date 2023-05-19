@@ -64,9 +64,9 @@ pipeline {
     }
     //Шаг 2. Выполнение
     stage('Выполнение') {
-      agent {
-        label 'kku'
-      }
+    //  agent {
+    //    label 'kku'
+    //  }
       steps {
         script {
           echo 'stage Выполнение:'
