@@ -24,7 +24,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr:'10'))
     }
 
-    enviroment {
+    environment {
         AGENT_NAME = ''
         AGENT_PLATFORM = ''
         AGENT_IBLOGIN = ''
