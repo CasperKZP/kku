@@ -52,7 +52,7 @@ pipeline {
               }
             }
 
-            echoParams()
+           def echoFunc = echoParams()
           }
         }
       }
