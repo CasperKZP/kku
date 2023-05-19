@@ -51,6 +51,9 @@ pipeline {
                       AGENT_IBPASS = ${item.ibpass};
             }
           }
+
+echoParams();
+
           }
         }
       }
