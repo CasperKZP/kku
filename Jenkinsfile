@@ -47,12 +47,12 @@ pipeline {
                 echo "Host find: ${item.hostName}"
                 AGENT_NAME = item.hostName
                 AGENT_PLATFORM = item.version
-                AGENT_IBLOGIN = item.iblogin
-                AGENT_IBPASS = item.ibpass
+                AGENT_IBLOGIN = item.ibLogin
+                AGENT_IBPASS = item.ibPass
               }
             }
 
-           echoParams()
+         
           }
         }
       }
@@ -61,7 +61,7 @@ pipeline {
 
     stage('Init') {
       steps {
-        script { echo "stage: init"
+        script {   echoParams()
         }
       }
     }
