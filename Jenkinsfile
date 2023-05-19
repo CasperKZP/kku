@@ -63,8 +63,7 @@ pipeline {
       steps {
         script {
           echo "stage stagename"
-          agents.each {key, val ->
-            parallel val
+          echo agents
           }
         }
       }
