@@ -44,11 +44,11 @@ pipeline {
               if (!item.used) { continue }
               if (item.hostName == node_name) {
                 //Параметры текущего хоста
-                echo "Host find: ${item.name }"
-                AGENT_NAME = ${ item.name };
-                AGENT_PLATFORM = ${ item.version };
-                AGENT_IBLOGIN = ${ item.iblogin };
-                AGENT_IBPASS = ${ item.ibpass };
+                echo "Host find: ${item.name}"
+                AGENT_NAME = ${item.name}
+                AGENT_PLATFORM = ${item.version}
+                AGENT_IBLOGIN = ${item.iblogin}
+                AGENT_IBPASS = ${item.ibpass}
               }
             }
 
