@@ -64,7 +64,7 @@ pipeline {
     }
     //Шаг 2. Выполнение
     stage('Выполнение') {
-      agent {label 'expo-0068'}
+      agent {label 'expo0068'}
       steps {
         script {
           echo 'stage Выполнение:'
