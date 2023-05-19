@@ -82,7 +82,7 @@ def echoParams(hostName) {
           label "${hostName}"
         }
         steps {
-       /  script {
+         script {
          //   if (hostName != "${NODE_NAME}") {
            //   unstable('Host skiped')
           //    return
