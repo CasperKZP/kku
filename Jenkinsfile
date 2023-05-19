@@ -81,8 +81,8 @@ def echoParams(hostName) {
         agent {
           label "${hostName}"
         }
-        steps {
-         // script {
+        //steps {
+          script {
          //   if (hostName != "${NODE_NAME}") {
            //   unstable('Host skiped')
           //    return
