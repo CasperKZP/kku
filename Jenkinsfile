@@ -62,7 +62,7 @@ pipeline {
     stage('Выполнение') {
       steps {
         script {
-          echo 'stage stagename'
+          echo "stage stagename"
         }
       }
     }
