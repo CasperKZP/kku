@@ -25,10 +25,10 @@ pipeline {
     }
 
     enviroment {
-        AGENT_NAME = "";
-        AGENT_PLATFORM = "";
-        AGENT_IBLOGIN = "";
-        AGENT_IBPASS = "";
+        AGENT_NAME = ''
+        AGENT_PLATFORM = ''
+        AGENT_IBLOGIN = ''
+        AGENT_IBPASS = ''
     }
 
   stages {
@@ -37,23 +37,22 @@ pipeline {
       steps {
         timestamps {
           script {
-          def data = readJSON file: 'app.properties'
-          def node_name = "${NODE_NAME}"
-          echo "The Node Name is: ${node_name}"
-          for (item in data.bases) {
-            if (!item.used) { continue }
-            if (item.hostName == node_name) {
-              //Параметры текущего хоста
-              echo "Host find: ${item.name }"
-                      AGENT_NAME = ${item.name};
-                      AGENT_PLATFORM = ${item.version};
-                      AGENT_IBLOGIN = ${item.iblogin};
-                      AGENT_IBPASS = ${item.ibpass};
+            def data = readJSON file: 'app.properties'
+            def node_name = "${NODE_NAME}"
+            echo "The Node Name is: ${node_name}"
+            for (item in data.bases) {
+              if (!item.used) { continue }
+              if (item.hostName == node_name) {
+                //Параметры текущего хоста
+                echo "Host find: ${item.name }"
+                AGENT_NAME = ${ item.name };
+                AGENT_PLATFORM = ${ item.version };
+                AGENT_IBLOGIN = ${ item.iblogin };
+                AGENT_IBPASS = ${ item.ibpass };
+              }
             }
-          }
 
-echoParams();
-
+            echoParams()
           }
         }
       }
@@ -63,16 +62,14 @@ echoParams();
     stage('Init') {
       steps {
         script {
-
         }
       }
     }
 }
-}
 
-def echoParams(){
-  echo AGENT_NAME ;
-      echo  AGENT_PLATFORM;
-     echo   AGENT_IBLOGIN;
-     echo   AGENT_IBPASS;
+def echoParams() {
+  echo AGENT_NAME
+  echo AGENT_PLATFORM
+  echo AGENT_IBLOGIN
+  echo AGENT_IBPASS
 }
