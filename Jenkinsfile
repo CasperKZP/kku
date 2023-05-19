@@ -45,7 +45,7 @@ pipeline {
               if (!item.used) { continue }
 
               agents["agents_${item.hostName}"] = echoParams(item.hostName) //заполняем словарь агентами
-              
+
               if (item.hostName == node_name) {
                 //Параметры текущего хоста
                 echo "Host find: ${item.hostName}"
@@ -79,7 +79,8 @@ def echoParams(hostName) {
   return {
     timestamps {
       stage("Этап ${hostName}") {
-        echo "Host name in stage: ${hostName}"
+        if (hostName == "${NODE_NAME}") {echo "Host name in stage: ${hostName}"}
+        
       }
     }
   }
