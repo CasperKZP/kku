@@ -7,6 +7,7 @@ import groovy.json.JsonSlurper
 //def sqlUtils = new SqlUtils()
 def utils = new Utils()
 //def projectHelpers = new ProjectHelpers()
+def agents = [:]
 
 pipeline {
   parameters {
@@ -32,7 +33,7 @@ pipeline {
     }
 
   stages {
-    //Шаг 1. Иниициализация
+    //Шаг 1. Иниициализация окружения
     stage('Подготовка') {
       steps {
         timestamps {
@@ -49,28 +50,38 @@ pipeline {
                 AGENT_PLATFORM = item.version
                 AGENT_IBLOGIN = item.ibLogin
                 AGENT_IBPASS = item.ibPass
+
+                agents["agents${item.hostName}"] = echoParams() //заполняем словарь агентами
               }
             }
 
-         
           }
         }
       }
     }
-  
 
-    stage('Init') {
+    //Шаг 2. Выполнение
+    stage('Выполнение') {
       steps {
-        script {   echoParams()
+        script {  
+          // echoParams()
         }
       }
     }
-}
+  }
 }
 
-def echoParams() {
-  echo AGENT_NAME
-  echo AGENT_PLATFORM
-  echo AGENT_IBLOGIN
-  echo AGENT_IBPASS
+def echoParams(hostName) {
+  return {
+    timestamps {
+      stage("Этап ${hostName}") {
+        echo "Host name in stage: ${hostName}"
+      }
+    }
+  }
+
+ // echo AGENT_NAME
+ // echo AGENT_PLATFORM
+ // echo AGENT_IBLOGIN
+ // echo AGENT_IBPASS
 }

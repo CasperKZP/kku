@@ -2,6 +2,7 @@ import groovy.json.JsonSlurper
 
 println 'helloworld'
 
+def agents = [:]
 def jsonSlurper = new JsonSlurper()
 data = jsonSlurper.parse(new File('app.properties'))
 //println(data)
@@ -13,9 +14,16 @@ data = jsonSlurper.parse(new File('app.properties'))
 
 for (item in data.bases) {
     if (!item.used) { continue }
-    print item.name
+    print item.hostName
     print item.used
-    println item.version}
+    println item.version
+    agents["agent_${item.hostName}"] = echoAgent(item.hostName)
+    }
 
 //}
 //println(data['bases'].name[0])
+
+def echoAgent(hostName)
+{
+    echo "success"
+}
