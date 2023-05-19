@@ -89,6 +89,7 @@ def echoParams(hostName) {
          //   }
 
             echo "Host name in stage: ${hostName}"
+            echo "Node name in stage: ${NODE_NAME}"
             dir ("${hostName}") {
                             writeFile file:'dummy', text:''
                         }
