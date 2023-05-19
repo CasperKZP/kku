@@ -84,10 +84,10 @@ def echoParams(hostName) {
         stage("Этап ${hostName}") {
           //steps {
           script {
-            if (hostName != "${NODE_NAME}") {
+           // if (hostName != "${NODE_NAME}") {
               //  unstable('Host skiped')
-              return
-            }
+            //  return
+          //  }
 
             echo "Host name in stage: ${hostName}"
             echo "Node name in stage: ${NODE_NAME}"
