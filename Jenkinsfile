@@ -65,6 +65,7 @@ pipeline {
       steps {
         script {  
           // echoParams()
+          echo "stage stagename"
         }
       }
     }
