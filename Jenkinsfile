@@ -17,7 +17,7 @@ pipeline {
   }
 
     agent {
-      //label 'expo-0068'
+      label any
     //    label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "expo-0068" : env.jenkinsAgent}"
     }
     options {
@@ -53,7 +53,6 @@ pipeline {
                 AGENT_PLATFORM = item.version
                 AGENT_IBLOGIN = item.ibLogin
                 AGENT_IBPASS = item.ibPass
-
               }
             }
 
@@ -78,13 +77,19 @@ def echoParams(hostName) {
   return {
     timestamps {
       stage("Этап ${hostName}") {
-        if (hostName != "${NODE_NAME}") {
-          unstable('Host skiped')
-          return
+        agent {
+          label "${hostName}"
         }
+        steps {
+          script {
+            if (hostName != "${NODE_NAME}") {
+              unstable('Host skiped')
+              return
+            }
 
-        echo "Host name in stage: ${hostName}"
+            echo "Host name in stage: ${hostName}" }
+            }
+        }
       }
     }
   }
-}
