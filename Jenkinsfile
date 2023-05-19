@@ -16,7 +16,7 @@ pipeline {
         string(defaultValue: "${env.admin1cPwd}", description: 'Пароль администратора базы тестирования 1C. Должен быть одинаковым для всех баз', name: 'admin1cPwd')
   }
 
-    agent any
+    agent none
     // {
     //  label any
     //    label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "expo-0068" : env.jenkinsAgent}"
@@ -66,7 +66,7 @@ pipeline {
     stage('Выполнение') {
       steps {
         script {
-          echo 'stage stagename'
+          echo 'stage Выполнение:'
           parallel agents
         }
       }
