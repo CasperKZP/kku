@@ -16,10 +16,10 @@ pipeline {
         string(defaultValue: "${env.admin1cPwd}", description: 'Пароль администратора базы тестирования 1C. Должен быть одинаковым для всех баз', name: 'admin1cPwd')
   }
 
-    agent {
-      label any
+   // agent {
+    //  label any
     //    label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "expo-0068" : env.jenkinsAgent}"
-    }
+    //}
     options {
         timeout(time: 8, unit: 'HOURS')
         buildDiscarder(logRotator(numToKeepStr:'10'))
