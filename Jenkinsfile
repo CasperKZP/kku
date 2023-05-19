@@ -55,7 +55,7 @@ pipeline {
               }
             }
 
-            parallel agents
+           // parallel agents
           }
         }
       }
@@ -65,6 +65,7 @@ pipeline {
       steps {
         script {
           echo 'stage stagename'
+          parallel agents
         }
       }
     }
