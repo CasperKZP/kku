@@ -51,7 +51,7 @@ pipeline {
                 AGENT_IBLOGIN = item.ibLogin
                 AGENT_IBPASS = item.ibPass
 
-                agents["agents${item.hostName}"] = echoParams() //заполняем словарь агентами
+                agents["agents${item.hostName}"] = echoParams(item.hostName) //заполняем словарь агентами
               }
             }
           }
