@@ -64,9 +64,6 @@ pipeline {
     }
     //Шаг 2. Выполнение
     stage('Выполнение') {
-      agent {
-        label "expo0068"
-        }
       steps {
         script {
           echo 'stage Выполнение:'
@@ -81,15 +78,13 @@ def echoParams(hostName) {
   return {
     timestamps {
       stage("Этап ${hostName}") {
-        agent {
-            label hostName
-        }
+
         //steps {
         script {
-         //   if (hostName != "${NODE_NAME}") {
-           //   unstable('Host skiped')
-          //    return
-         //   }
+            if (hostName != "${NODE_NAME}") {
+              unstable('Host skiped')
+              return
+            }
 
             echo "Host name in stage: ${hostName}"
             echo "Node name in stage: ${NODE_NAME}"
