@@ -52,7 +52,7 @@ pipeline {
               }
             }
 
-           def echoFunc = echoParams()
+           echoParams()
           }
         }
       }
@@ -69,8 +69,8 @@ pipeline {
 }
 
 def echoParams() {
-  echo AGENT_NAME
-  echo AGENT_PLATFORM
-  echo AGENT_IBLOGIN
-  echo AGENT_IBPASS
+ // echo AGENT_NAME
+ // echo AGENT_PLATFORM
+ // echo AGENT_IBLOGIN
+ // echo AGENT_IBPASS
 }
