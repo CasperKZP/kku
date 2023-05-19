@@ -51,9 +51,11 @@ pipeline {
                 AGENT_IBLOGIN = item.ibLogin
                 AGENT_IBPASS = item.ibPass
 
-                agents["agents${item.hostName}"] = echoParams(item.hostName) //заполняем словарь агентами
+                agents["agents_${item.hostName}"] = echoParams(item.hostName) //заполняем словарь агентами
               }
             }
+
+            parallel agents
           }
         }
       }
@@ -63,7 +65,6 @@ pipeline {
       steps {
         script {
           echo "stage stagename"
-          echo agents
           }
         }
       }
