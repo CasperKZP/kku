@@ -61,7 +61,7 @@ pipeline {
 
     stage('Init') {
       steps {
-        script {
+        script { echo "stage: init"
         }
       }
     }
