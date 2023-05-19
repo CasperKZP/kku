@@ -80,6 +80,7 @@ def echoParams(hostName) {
     timestamps {
       stage("Этап ${hostName}") {
         if (hostName != "${NODE_NAME}") {
+         unstable('Host skiped')
           return
          } 
 
