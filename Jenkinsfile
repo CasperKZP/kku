@@ -16,8 +16,8 @@ pipeline {
         string(defaultValue: "${env.admin1cPwd}", description: 'Пароль администратора базы тестирования 1C. Должен быть одинаковым для всех баз', name: 'admin1cPwd')
   }
 
-    agent any 
-   // {
+    agent any
+    // {
     //  label any
     //    label "${(env.jenkinsAgent == null || env.jenkinsAgent == 'null') ? "expo-0068" : env.jenkinsAgent}"
     //}
@@ -82,15 +82,16 @@ def echoParams(hostName) {
           label "${hostName}"
         }
         steps {
-          script {
-            if (hostName != "${NODE_NAME}") {
-              unstable('Host skiped')
-              return
-            }
+         // script {
+         //   if (hostName != "${NODE_NAME}") {
+           //   unstable('Host skiped')
+          //    return
+         //   }
 
-            echo "Host name in stage: ${hostName}" }
-            }
+            echo "Host name in stage: ${hostName}"
+        //  }
         }
       }
     }
   }
+}
