@@ -17,7 +17,7 @@ for (item in data.bases) {
     print item.hostName
     print item.used
     println item.version
-    agents["agent_${item.hostName}"] = echoAgent(item.hostName)
+   // agents["agent_${item.hostName}"] = echoAgent(item.hostName)
     }
 
 //}
