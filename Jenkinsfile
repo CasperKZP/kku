@@ -34,12 +34,21 @@ pipeline {
                 }
             }
         }
+        stage('second-tasks') {
+            steps {
+                script {
+                   // processTask()
+                    println 'Running parallel stages'
+                    parallel collectBuildEnv
+                }
+            }
+        }
     }
 }
 
 def dumpBuildEnv(String agentName, String infoBaseName, String versionPlatform, String infobasePath, Boolean isFile) {
     node("${agentName}") {
-        stage("1. Env in ${agentName}") {
+        stage("1. Env in ${agentName}") { 
             echo "running on agent, ${agentName}"
         }
         stage("2. second stage env in ${agentName}") {
