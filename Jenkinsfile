@@ -1,4 +1,5 @@
 import jenkins.model.*
+import io.libs.Utils
 
 collectBuildEnv = [:]
 
@@ -12,30 +13,6 @@ def getNodes(String label) {
             }
         }
     }
-
-def dumpBuildEnv(String agentName) {
-    node("${agentName}") {
-            stage("1. Env in ${agentName}") {
-                echo "running on agent, ${agentName}"
-            // sh 'printenv'
-            }
-        stage("2. second stage env in ${agentName}") {
-            echo "running on agent, ${agentName}"
-        }
-    }
-}
-
-def processTask() {
-    def data = readJSON file: 'app.properties'
-    for (item in data.bases) {
-        def agentName = item.hostName
-        if (item.used != true) { continue }
-        println 'Prearing task for ' + agentName
-        collectBuildEnv['node_' + agentName] = {
-            dumpBuildEnv(agentName)
-        }
-    }
-}
 
 pipeline {
     // I prefer to have a dedicated node to execute admin tasks
@@ -56,6 +33,32 @@ pipeline {
                     parallel collectBuildEnv
                 }
             }
+        }
+    }
+}
+
+def dumpBuildEnv(String agentName) {
+    node("${agentName}") {
+        stage("1. Env in ${agentName}") {
+            echo "running on agent, ${agentName}"
+            }
+        stage("2. second stage env in ${agentName}") {
+            echo "running on agent, ${agentName}"
+            dir ("build_${agentName}") {
+                            writeFile file:'dummy', text:''
+                    }
+        }
+    }
+}
+
+def processTask() {
+    def data = readJSON file: 'app.properties'
+    for (item in data.bases) {
+        def agentName = item.hostName
+        if (item.used != true) { continue }
+        println 'Prearing task for ' + agentName
+        collectBuildEnv['node_' + agentName] = {
+            dumpBuildEnv(agentName)
         }
     }
 }
