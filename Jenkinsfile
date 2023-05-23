@@ -63,7 +63,7 @@ pipeline {
             steps {
                 script {
                     processTask()
-
+                    println 'Running parallel stages'
                     parallel collectBuildEnv
                 }
             }
