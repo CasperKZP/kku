@@ -1,3 +1,4 @@
+@Library("shared-libraries")
 import jenkins.model.*
 import io.libs.Utils
 import io.libs.ProjectHelpers
