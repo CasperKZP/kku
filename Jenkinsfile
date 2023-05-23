@@ -25,7 +25,7 @@ def dumpBuildEnv(String agentName) {
 def processTask() {
     def data = readJSON file: 'app.properties'
     for (item in data.bases) {
-        if (item.used !=true) { continue }
+        if (item.used != true) continue
         println 'Prearing task for ' + item.hostName
         collectBuildEnv['node_' + item.hostName] = {
             dumpBuildEnv(item.hostName)
