@@ -26,7 +26,7 @@ def processTask() {
     def data = readJSON file: 'app.properties'
     for (item in data.bases) {
         println "is item use - ${item.used}"
-        if (item.used = true) {
+        if (item.used == true) {
             println 'Prearing task for ' + item.hostName
             collectBuildEnv['node_' + item.hostName] = {
                 dumpBuildEnv(item.hostName)
