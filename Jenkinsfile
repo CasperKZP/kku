@@ -2,6 +2,7 @@ import jenkins.model.*
 import io.libs.Utils
 import io.libs.ProjectHelpers
 
+def projectHelpers = new ProjectHelpers()
 collectBuildEnv = [:]
 
 @NonCPS
@@ -63,7 +64,7 @@ def processTask() {
         def infobasePath = item.infobasePath
         def isFile = item.isFile
         def ibLogin = item.ibLogin
-        def ibLogin = item.ibPass
+        def ibPass = item.ibPass
 
         if (item.used != true) { continue }
         println 'Prearing task for ' + agentName
