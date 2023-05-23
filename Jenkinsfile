@@ -38,8 +38,8 @@ pipeline {
             steps {
                 script {
                    // processTask()
-                    println 'Running parallel stages'
-                    parallel collectBuildEnv
+                    println 'Running stages 2'
+                   
                 }
             }
         }
