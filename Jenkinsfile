@@ -1,5 +1,6 @@
 import jenkins.model.*
 import io.libs.Utils
+import io.libs.ProjectHelpers
 
 collectBuildEnv = [:]
 
@@ -34,28 +35,21 @@ pipeline {
                 }
             }
         }
-        stage('second-tasks') {
-            steps {
-                script {
-                   // processTask()
-                    println 'Running stages 2'
-                   
-                }
-            }
-        }
     }
 }
 
-def dumpBuildEnv(String agentName, String infoBaseName, String versionPlatform, String infobasePath, Boolean isFile) {
+def dumpBuildEnv(String agentName, String infoBaseName, String versionPlatform, String infobasePath, Boolean isFile, String ibLogin, String ibPass) {
     node("${agentName}") {
-        stage("1. Env in ${agentName}") { 
-            echo "running on agent, ${agentName}"
+        stage("1. Block infobase (${agentName})") {
+            def projectHelpers = new ProjectHelpers()
+                try {
+                projectHelpers.blockDb(infoBaseName, isFile);
+                } catch (excp) {
+                echo "Error happened when block base ${infoBaseName}."
+                }
         }
-        stage("2. second stage env in ${agentName}") {
-            echo "running on agent, ${agentName}"
-            dir("build_${agentName}") {
-                writeFile file:"${infoBaseName}", text:''
-            }
+        stage("2. Update infobase (${agentName})") {
+            echo 'step 2'
         }
     }
 }
@@ -68,10 +62,13 @@ def processTask() {
         def versionPlatform = item.version
         def infobasePath = item.infobasePath
         def isFile = item.isFile
+        def ibLogin = item.ibLogin
+        def ibLogin = item.ibPass
+
         if (item.used != true) { continue }
         println 'Prearing task for ' + agentName
         collectBuildEnv['node_' + agentName] = {
-            dumpBuildEnv(agentName, infoBaseName, versionPlatform, infobasePath, isFile)
+            dumpBuildEnv(agentName, infoBaseName, versionPlatform, infobasePath, isFile, ibLogin, ibPass)
         }
     }
 }
