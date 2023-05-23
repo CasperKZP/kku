@@ -19,7 +19,7 @@ def dumpBuildEnv(String agentName) {
                 echo "running on agent, ${agentName}"
             // sh 'printenv'
             }
-        stage('2. second stage') {
+        stage("2. second stage") {
             echo 'second stage'
         }
     }
