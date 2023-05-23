@@ -25,30 +25,13 @@ def dumpBuildEnv(String agentName) {
 def processTask() {
     def data = readJSON file: 'app.properties'
     for (item in data.bases) {
-        println "is item use - ${item.used}"
-        def agentName = item.hostName;
-        if (item.used == true) {
-            println 'Prearing task for ' + agentName
-            collectBuildEnv['node_' + agentName] = {
-                dumpBuildEnv(agentName)
-            }
+        def agentName = item.hostName
+        if (item.used != true) { continue }
+        println 'Prearing task for ' + agentName
+        collectBuildEnv['node_' + agentName] = {
+            dumpBuildEnv(agentName)
         }
     }
-/*
-    // Replace label-string with the label name that you may have
-    def nodeList = getNodes('kku')
-
-    for (i = 0; i < nodeList.size(); i++) {
-        def agentName = nodeList[i]
-
-        // skip the null entries in the nodeList
-        if (agentName != null) {
-            println 'Prearing task for ' + agentName
-            collectBuildEnv['node_' + agentName] = {
-                dumpBuildEnv(agentName)
-            }
-        }
-    }*/
 }
 
 pipeline {
