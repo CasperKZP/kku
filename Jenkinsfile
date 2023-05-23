@@ -45,7 +45,7 @@ def dumpBuildEnv(String agentName, String infoBaseName, String versionPlatform, 
         stage("1. Block infobase (${agentName})") {
             def projectHelpers = new ProjectHelpers()
                 try {
-                projectHelpers.blockDb(infoBaseName, isFile);
+                projectHelpers.blockDb(infoBaseName, isFile)
                 } catch (excp) {
                 echo "Error happened when block base ${infoBaseName}."
                 }
