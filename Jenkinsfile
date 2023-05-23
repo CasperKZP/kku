@@ -15,12 +15,10 @@ def getNodes(String label) {
 
 def dumpBuildEnv(String agentName) {
     node("${agentName}") {
-        stages {
             stage("1. Env in ${agentName}") {
                 echo "running on agent, ${agentName}"
             // sh 'printenv'
             }
-        }
         stage('2. second stage') {
             echo 'second stage'
         }
